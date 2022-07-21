@@ -6,11 +6,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 def scrape_all():
     # Initiate headless driver for deployment
-    executable_path = {'executable_path': ChromeDriverManager().install()}
+    executable_path = {'executable_path': r'C:\Users\Nathan\.wdm\drivers\chromedriver\win32\103.0.5060.53\chromedriver.exe'}
     browser = Browser('chrome', **executable_path, headless=True)
 
     news_title, news_paragraph = mars_news(browser)
-    img_urls_titles = mars_hemis(browser)
 
 # Run all scraping functions and store results in dictionary
     data = {
@@ -18,6 +17,7 @@ def scrape_all():
       "news_paragraph": news_paragraph,
       "featured_image": featured_image(browser),
       "facts": mars_facts(),
+      "hemispheres": mars_hemis(browser),
       "last_modified": dt.datetime.now()
     }
     browser.quit()
